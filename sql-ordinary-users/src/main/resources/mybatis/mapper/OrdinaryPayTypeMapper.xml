@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qwer.ordinary.mapper.OrdinaryPayTypeMapper">
+
+    <!--public List<PayType> selectByTeam(String team);-->
+    <select id="selectByTeam" resultType="com.qwer.module.pojo.PayType">
+        select * from pay_type where `team`=#{team}
+    </select>
+</mapper>

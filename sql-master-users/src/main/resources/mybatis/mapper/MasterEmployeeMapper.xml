@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qwer.master.mapper.MasterEmployeeMapper">
+    <!--*     private Integer id;-->
+    <!--*     private String username; // 用户名-->
+    <!--*     private String password; // 密码-->
+    <!--*     private Integer authority; // 1 代表普通用户，0代表超管-->
+    <!--*     private String team; // 所属团队-->
+    <!--public int add(Employee employee);-->
+    <insert id="add">
+        insert into employee(`username`,`password`,`authority`,`team`)
+        values (#{username},#{password},#{authority},#{team})
+    </insert>
+
+    <!--public int update(Employee employee);-->
+    <update id="update">
+        update employee
+        set `username`=#{username},`password`=#{password},`authority`=#{authority},`team`=#{team}
+        where `id`=#{id}
+    </update>
+
+    <!--public Employee selectById(Integer id);-->
+    <select id="selectById" resultType="com.qwer.module.pojo.Employee">
+        select * from employee where `id`=#{id}
+    </select>
+
+    <!--public Employee selectByUsername(String username);-->
+    <select id="selectByUsername" resultType="com.qwer.module.pojo.Employee">
+        select * from employee where `username`=#{username}
+    </select>
+
+    <!--public Employee login(Employee employee);-->
+    <select id="selectByUsernameAndPassword" resultType="com.qwer.module.pojo.Employee">
+        select * from employee where `username`=#{username} and `password`=#{password}
+    </select>
+
+
+
+    <!--public int deleteById(Integer id);-->
+    <delete id="deleteById">
+        delete from employee where `id`=#{id}
+    </delete>
+
+    <!--public int deleteByTeam(String team);-->
+    <delete id="deleteByTeam">
+        delete from employee where `team`=#{team}
+    </delete>
+
+    <!--public List<Employee> selectByTeam(String team);-->
+    <select id="selectByTeam" resultType="com.qwer.module.pojo.Employee">
+        select * from employee where `team`=#{team}
+    </select>
+
+    <!--public List<Employee> selectAll();-->
+    <select id="selectAll" resultType="com.qwer.module.pojo.Employee">
+        select * from employee
+    </select>
+
+</mapper>

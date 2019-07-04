@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qwer.ordinary.mapper.OrdinaryProductMapper">
+
+    <!--*     private Integer id;-->
+    <!--*     private String payWayName; // 支付方式-->
+    <!--*     private String payTypeName; // 支付类型-->
+    <!--*-->
+    <!--*     private String max; // 最大金额-->
+    <!--*     private String min; // 最小金额-->
+    <!--*     private Integer role; // 支付规则-->
+    <!--*     private String amountList; // 固定金额列表-->
+    <!--*     private Integer employeeId; // 绑定用户id-->
+    <!--*     private Double rate; //费率-->
+    <!--*     private String team; // 所属团队-->
+
+    <!--public int add(Product product);-->
+    <insert id="add">
+        insert into product(pay_way_name,pay_type_name,`max`,`min`,`role`,amount_list,employee_id,`rate`,`team`)
+        values(#{payWaryName},#{payTypeName},#{max},#{min},#{role},#{amountList},#{employeeId},#{rate},#{team})
+    </insert>
+
+    <!--public int update(Product product);-->
+    <update id="update">
+        update product
+        set pay_way_name=#{payWayName},pay_type_name=#{payTypeName},
+        `max`=#{max},`min`=#{min},`role`=#{role},amount_list=#{amountList},
+        employee_id=#{employeeId},`rate`=#{rate},`team`=#{team}
+        where `id`=#{id}
+    </update>
+
+    <!--public int deleteById(Integer id);-->
+    <delete id="deleteById">
+        delete from product where `id`=#{id}
+    </delete>
+
+    <!--public Product selectById(Integer id);-->
+    <select id="selectById" resultType="com.qwer.module.pojo.Product">
+        select * from product where `id`=#{id}
+    </select>
+
+    <!--public List<Product> selectByEmployeeId(Integer employeeId);-->
+    <select id="selectByEmployeeId" resultType="com.qwer.module.pojo.Product">
+         select * from product where `employee_id`=#{employeeId}
+    </select>
+
+    <!--public List<Product> selectByIdList(Integer[] list);-->
+    <select id="selectByIdList" resultType="com.qwer.module.pojo.Product">
+        select * from product where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

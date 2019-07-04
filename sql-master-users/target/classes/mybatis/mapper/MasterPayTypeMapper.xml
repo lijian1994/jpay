@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qwer.master.mapper.MasterPayTypeMapper">
+    <!--*     private Integer id;-->
+    <!--*     private String payCode; // 支付编码-->
+    <!--*     private String team; // 所属团队-->
+    <!--*     private Integer active; // 1：可以测试，0禁止测试-->
+
+    <!--public int add(PayType payType);-->
+    <insert id="add">
+        insert into pay_type(pay_code,`team`,`active`) values(#{payCode},#{team},#{active})
+    </insert>
+
+    <!--public int update(PayType payType);-->
+    <update id="update">
+        update pay_type
+        set pya_code=#{payCode},`team`=#{team},`active`=#{active}
+        where `id`=#{id}
+    </update>
+
+    <!--public int deleteById(Integer id);-->
+    <delete id="deleteById">
+        delete from pay_code where `id`=#{id}
+    </delete>
+
+    <!--public int deleteByTeam(String team);-->
+    <delete id="deleteByTeam">
+        delete from pay_code where `team`=#{team}
+    </delete>
+
+    <!--public PayType selectById(Integer id);-->
+    <select id="selectById" resultType="com.qwer.module.pojo.PayType">
+        select * from pay_type where `id`=#{id}
+    </select>
+
+    <!--public List<PayType> selectByTeam(String team);-->
+    <select id="selectByTeam" resultType="com.qwer.module.pojo.PayType">
+        select * from pay_type where `team`=#{team}
+    </select>
+
+    <!--public List<PayType> selectAll();-->
+    <select id="selectAll" resultType="com.qwer.module.pojo.PayType">
+        select * from pay_type
+    </select>
+</mapper>
